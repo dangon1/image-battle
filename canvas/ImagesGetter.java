@@ -3,15 +3,14 @@ package com.imagewinnner.canvas;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 import java.util.Stack;
 
 import javax.imageio.ImageIO;
 
 public class ImagesGetter {
 	
-	private static final String[] imagesURL = {
+	private static final List<String> imagesURL = List.of(
 		"https://i.pinimg.com/564x/9e/56/43/9e56438baaf44c0fa49bd12c166c59bf.jpg",		
 		"https://i.pinimg.com/564x/c4/b8/7a/c4b87a02273ba1989ed00d8523f279bf.jpg",
 		"https://i.pinimg.com/564x/dd/90/30/dd9030237f01f4a15d69fbc175a8cdf1.jpg",
@@ -30,19 +29,17 @@ public class ImagesGetter {
 		"https://i.pinimg.com/564x/32/33/01/323301e48b19a954c6b9263e69670e01.jpg",
 		"https://i.pinimg.com/564x/4a/7c/5a/4a7c5a63fe4d2a6c7f8d140c0d2b45b1.jpg",
 		"https://i.pinimg.com/564x/82/b4/ca/82b4cab290df7eb5f3fbaa1c4aa7e793.jpg"
-		};
+		);
 	
 
 	public static Stack<BufferedImage> getImages() throws IOException {
 		Stack<BufferedImage> imagesStack = new Stack<>();
 		
-		for(int i=0;i<imagesURL.length;i++) {
-			String path = imagesURL[i];
-	        System.out.println("Get Image from " + path);
-	        URL url = new URL(path);
+		for (String imageURL : imagesURL) {
+	        System.out.println("Getting Image from " + imageURL);
+	        URL url = new URL(imageURL);
 	        imagesStack.push(ImageIO.read(url));
 		}
-		
 		
 		return imagesStack;
 	}
