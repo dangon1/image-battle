@@ -1,6 +1,5 @@
-package imagewinner;
+package com.imagewinner;
 
-import java.awt.Canvas;
 import java.awt.Container;
 import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
@@ -20,13 +19,16 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-public class ImageWinnerDrawer extends Canvas {
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
+
+@Singleton
+public class ImageBattle{
+	
+	@Inject
+	private ImageGetter imageGetter;
 
 	private static final int MESSAGE_SIZE= 100;
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private Stack<SimpleEntry<String,BufferedImage>> imagesStack;
 	private JFrame battleFrame;
 	private JButton leftButton;
@@ -38,11 +40,7 @@ public class ImageWinnerDrawer extends Canvas {
 	private SimpleEntry<String,BufferedImage> leftImageEntry;
 	private SimpleEntry<String,BufferedImage> lastWinner;
 
-	public static void main(String[] args) {
-		new ImageWinnerDrawer();
-	}
-
-	public ImageWinnerDrawer() {
+	public void start() {
 		
 		EventQueue.invokeLater(new Runnable() {
 			@Override
@@ -54,7 +52,7 @@ public class ImageWinnerDrawer extends Canvas {
 				}
 
 				try {
-					imagesStack = ImagesGetter.getImages();
+					imagesStack = imageGetter.getImages();
 					initializeGUI();
 					drawGUI();
 

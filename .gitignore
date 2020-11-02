@@ -7,5 +7,6 @@ build
 .gitignore
 .classpath
 .project
+.settings
 /bin/
 
