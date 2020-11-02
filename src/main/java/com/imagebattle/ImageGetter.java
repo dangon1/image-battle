@@ -1,4 +1,4 @@
-package com.imagewinner;
+package com.imagebattle;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
